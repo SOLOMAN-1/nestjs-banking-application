@@ -47,4 +47,10 @@ export class AuthController {
     transfer(@Request() req, @Body() body) {
         return this.authService.transfer(req.user.id,body);
     }
+    @Get('details')
+    @Roles('ADMIN')
+    @UseGuards(JWTGuard, RolesGuard)
+    details(@Request() req) {
+        return this.authService.details(req.user.id);
+    }
 }

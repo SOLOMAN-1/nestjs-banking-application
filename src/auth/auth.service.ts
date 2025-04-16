@@ -10,6 +10,7 @@ import { Transaction } from './typeorm/entity/trannsaction';
 import { TransferDto } from './dto/transferdto';
 @Injectable()
 export class AuthService {
+    
  
 
     constructor(@InjectRepository(RegisterUser) private bankingRepository:Repository<RegisterUser>,
@@ -137,6 +138,9 @@ export class AuthService {
             return "Reciever not found";
         }
         }
+    }details(id: any) {
+        const users=this.bankingRepository.find({relations:['sentTransactions','receivedTransactions']})
+        return users;
     }
 
     
